@@ -1,34 +1,43 @@
 fileFormatVersion: 2
-guid: eaa2b042542b7d14c984b63988a9e4bd
+guid: 8d8f1f4525ce93749a96f54e4b18feec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8020143640844766479
-    second: spritesheet_0
+      213: -3375106006895846457
+    second: srw_arpg_staff03_0-export_0
   - first:
-      213: -6251682230944352461
-    second: spritesheet_1
+      213: -3556279595375867856
+    second: srw_arpg_staff03_0-export_1
   - first:
-      213: -1259408508766424310
-    second: spritesheet_2
+      213: 4058527940919856963
+    second: srw_arpg_staff03_0-export_2
   - first:
-      213: -5962389079421231736
-    second: spritesheet_3
+      213: 5655348092881884663
+    second: srw_arpg_staff03_0-export_3
   - first:
-      213: 2788568348960109317
-    second: spritesheet_4
+      213: -6031264033264168250
+    second: srw_arpg_staff03_0-export_4
   - first:
-      213: 226702753830753226
-    second: spritesheet_5
+      213: 2640929700298214061
+    second: srw_arpg_staff03_0-export_5
   - first:
-      213: -7921052967969465774
-    second: spritesheet_6
+      213: 2650574400452413978
+    second: srw_arpg_staff03_0-export_6
   - first:
-      213: -1370661682523340017
-    second: spritesheet_7
+      213: 5887625788128481225
+    second: srw_arpg_staff03_0-export_7
   - first:
-      213: -8276262488406422588
-    second: spritesheet_8
+      213: -9180468943910071043
+    second: srw_arpg_staff03_0-export_8
+  - first:
+      213: -2124275768717200995
+    second: srw_arpg_staff03_0-export_9
+  - first:
+      213: -3823764933804568077
+    second: srw_arpg_staff03_0-export_10
+  - first:
+      213: 3574308811076797246
+    second: srw_arpg_staff03_0-export_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -126,7 +135,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spritesheet_0
+      name: srw_arpg_staff03_0-export_0
       rect:
         serializedVersion: 2
         x: 0
@@ -140,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0d092816264d4f60800000000000000
-      internalID: 8020143640844766479
+      spriteID: 7cb9fa308f63921d0800000000000000
+      internalID: -3375106006895846457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_1
+      name: srw_arpg_staff03_0-export_1
       rect:
         serializedVersion: 2
         x: 32
@@ -161,14 +170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 337b0ff32209d39a0800000000000000
-      internalID: -6251682230944352461
+      spriteID: 038c6abcc8e85aec0800000000000000
+      internalID: -3556279595375867856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_2
+      name: srw_arpg_staff03_0-export_2
       rect:
         serializedVersion: 2
         x: 64
@@ -182,14 +191,77 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a037fd742aea58ee0800000000000000
-      internalID: -1259408508766424310
+      spriteID: 34f8685c8a9c25830800000000000000
+      internalID: 4058527940919856963
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_3
+      name: srw_arpg_staff03_0-export_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f5586d8025db7e40800000000000000
+      internalID: 5655348092881884663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: srw_arpg_staff03_0-export_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c213b61155ac4ca0800000000000000
+      internalID: -6031264033264168250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: srw_arpg_staff03_0-export_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daacd07f19776a420800000000000000
+      internalID: 2640929700298214061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: srw_arpg_staff03_0-export_6
       rect:
         serializedVersion: 2
         x: 0
@@ -203,14 +275,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88ddd6ce8b6514da0800000000000000
-      internalID: -5962389079421231736
+      spriteID: a1ac5b5bf5bb8c420800000000000000
+      internalID: 2650574400452413978
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_4
+      name: srw_arpg_staff03_0-export_7
       rect:
         serializedVersion: 2
         x: 32
@@ -224,14 +296,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5033aaf832cf2b620800000000000000
-      internalID: 2788568348960109317
+      spriteID: 9cfc3d7d57c05b150800000000000000
+      internalID: 5887625788128481225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_5
+      name: srw_arpg_staff03_0-export_8
       rect:
         serializedVersion: 2
         x: 64
@@ -245,14 +317,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac35fa714f8652300800000000000000
-      internalID: 226702753830753226
+      spriteID: df41cbeb22c689080800000000000000
+      internalID: -9180468943910071043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_6
+      name: srw_arpg_staff03_0-export_9
       rect:
         serializedVersion: 2
         x: 0
@@ -266,14 +338,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25a502d0b44c21290800000000000000
-      internalID: -7921052967969465774
+      spriteID: d9134a8717e0582e0800000000000000
+      internalID: -2124275768717200995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_7
+      name: srw_arpg_staff03_0-export_10
       rect:
         serializedVersion: 2
         x: 32
@@ -287,14 +359,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0305f9367e6afce0800000000000000
-      internalID: -1370661682523340017
+      spriteID: 3f1dbf74d024feac0800000000000000
+      internalID: -3823764933804568077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_8
+      name: srw_arpg_staff03_0-export_11
       rect:
         serializedVersion: 2
         x: 64
@@ -308,8 +380,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cb05a6cd1fc42d80800000000000000
-      internalID: -8276262488406422588
+      spriteID: e3308c91dee7a9130800000000000000
+      internalID: 3574308811076797246
       vertices: []
       indices: 
       edges: []

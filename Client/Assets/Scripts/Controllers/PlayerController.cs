@@ -6,14 +6,98 @@ using static Define;
 
 public class PlayerController : CreatureController
 {
+    Coroutine _coSkill;
+    bool _rangeSkill = false;
     protected override void Init()
     {
         base.Init();
     }
+    protected override void UpdateAnimation()
+    {
+        if (_state == CreatureState.Idle)
+        {
+            switch (_lastDir)
+            {
+                case MoveDir.Up:
+                    _animator.Play("IDLE_BACK");
+                    _sprite.flipX = false;
+                    break;
+                case MoveDir.Down:
+                    _animator.Play("IDLE_FRONT");
+                    _sprite.flipX = false;
+                    break;
+                case MoveDir.Left:
+                    _animator.Play("IDLE_RIGHT");
+                    _sprite.flipX = true;
+                    break;
+                case MoveDir.Right:
+                    _animator.Play("IDLE_RIGHT");
+                    _sprite.flipX = false;
+                    break;
+            }
+        }
+        else if (_state == CreatureState.Moving)
+        {
+            switch (_dir)
+            {
+                case MoveDir.Up:
+                    _animator.Play("WALK_BACK");
+                    _sprite.flipX = false;
+                    break;
+                case MoveDir.Down:
+                    _animator.Play("WALK_FRONT");
+                    _sprite.flipX = false;
+                    break;
+                case MoveDir.Left:
+                    _animator.Play("WALK_RIGHT");
+                    _sprite.flipX = true;
+                    break;
+                case MoveDir.Right:
+                    _animator.Play("WALK_RIGHT");
+                    _sprite.flipX = false;
+                    break;
+            }
+        }
+        else if (_state == CreatureState.Skill)
+        {
+            switch (_lastDir)
+            {
+                case MoveDir.Up:
+                    _animator.Play(_rangeSkill ?"ATTACK_BACK" : "ATTACK_WEAPON_BACK");
+                    _sprite.flipX = false;
+                    break;
+                case MoveDir.Down:
+                    _animator.Play(_rangeSkill ? "ATTACK_FRONT" : "ATTACK_WEAPON_FRONT");
+                    _sprite.flipX = false;
+                    break;
+                case MoveDir.Left:
+                    _animator.Play(_rangeSkill ? "ATTACK_RIGHT" : "ATTACK_WEAPON_RIGHT");
+                    _sprite.flipX = true;
+                    break;
+                case MoveDir.Right:
+                    _animator.Play(_rangeSkill ? "ATTACK_RIGHT" : "ATTACK_WEAPON_RIGHT");
+                    _sprite.flipX = false;
+                    break;
+            }
+        }
+        else
+        {
 
+        }
+    }
     protected override void UpdateController()
     {
-        GetDirInput();
+        switch (State)
+        {
+            case CreatureState.Idle:
+                GetDirInput();
+                GetIdleInput();
+                break;
+            case CreatureState.Moving:
+                GetDirInput();
+                break;
+        }
+
         base.UpdateController();
     }
 
@@ -44,6 +128,45 @@ public class PlayerController : CreatureController
         else
         {
             Dir = MoveDir.None;
+
         }
+    }
+    void GetIdleInput()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            State = CreatureState.Skill;
+            // _coSkill = StartCoroutine("CorStartPunch");
+            _coSkill = StartCoroutine("CorStartShootArrow");
+        }
+     
+    }
+
+    IEnumerator CorStartPunch()
+    {
+        //피격판정
+        GameObject go = Managers.Obj.Find(GetFrontCellPos());
+        if(go != null){
+            Debug.Log(go.name);
+
+        }
+
+        yield return new WaitForSeconds(0.5f);
+        State = CreatureState.Idle;
+        _coSkill = null;
+    }
+
+    IEnumerator CorStartShootArrow()
+    {
+        
+        GameObject go = Managers.Resource.Instantiate("Creature/Arrow");
+        ArrowController ac = go.gameObject.GetComponent<ArrowController>();
+        ac.Dir = _lastDir;
+        ac.CellPos = CellPos;
+        _rangeSkill = true;
+        yield return new WaitForSeconds(0.3f);
+        State = CreatureState.Idle;
+        _coSkill = null;
+        _rangeSkill = false;
     }
 }
