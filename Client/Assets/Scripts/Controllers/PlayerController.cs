@@ -91,7 +91,6 @@ public class PlayerController : CreatureController
         {
             case CreatureState.Idle:
                 GetDirInput();
-                GetIdleInput();
                 break;
             case CreatureState.Moving:
                 GetDirInput();
@@ -131,16 +130,23 @@ public class PlayerController : CreatureController
 
         }
     }
-    void GetIdleInput()
+    protected override void UpdateIdle()
     {
+        //이동으로 갈지 확인
+        if(Dir != MoveDir.None)
+        {
+            State = CreatureState.Moving;
+        }
+
+        //스킬로 갈지 확인
         if (Input.GetKey(KeyCode.Space))
         {
             State = CreatureState.Skill;
             // _coSkill = StartCoroutine("CorStartPunch");
             _coSkill = StartCoroutine("CorStartShootArrow");
         }
-     
     }
+
 
     IEnumerator CorStartPunch()
     {
