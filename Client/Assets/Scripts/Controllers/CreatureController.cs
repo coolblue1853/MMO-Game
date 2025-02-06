@@ -246,4 +246,8 @@ public class CreatureController : MonoBehaviour
     {
 
     }
+    public virtual void OnDamaged()
+    {
+
+    }
 }

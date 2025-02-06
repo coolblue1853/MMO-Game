@@ -146,9 +146,11 @@ public class PlayerController : CreatureController
     {
         //피격판정
         GameObject go = Managers.Obj.Find(GetFrontCellPos());
-        if(go != null){
-            Debug.Log(go.name);
-
+        if (go != null)
+        {
+            CreatureController cc = go.GetComponent<CreatureController>();
+            if (cc != null)
+                cc.OnDamaged();
         }
 
         yield return new WaitForSeconds(0.5f);

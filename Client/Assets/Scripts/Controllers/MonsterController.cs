@@ -19,6 +19,16 @@ public class MonsterController : CreatureController
         base.UpdateController();
     }
 
+    public override void OnDamaged()
+    {
+        GameObject effect = Managers.Resource.Instantiate("Effect/DieEffect");
+        effect.transform.position = transform.position;
+        effect.GetComponent<Animator>().Play("DieAnim");
+        GameObject.Destroy(effect, 0.5f);
+        Managers.Obj.Remove(gameObject);
+        Managers.Resource.Destroy(gameObject);
+    }
+
     // 키보드 입력
     void GetDirInput()
     {
