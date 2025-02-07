@@ -1,20 +1,38 @@
 syntax = "proto3";
+
 package Protocol;
-
 import "google/protobuf/timestamp.proto";
-
 option csharp_namespace = "Google.Protobuf.Protocol";
 
+enum MsgId {
+  PERSON = 0;
+  C_CHAT = 1;
+  S_CHAT = 2;
+  S_ENTER_GAME = 3;
+}
+
+message C_Chat {
+  string context = 1;
+}
+
+message S_Chat {
+  string context = 1;
+}
+
+message S_EnterGame {
+  string context = 1;
+}
+
 message Person {
-  string name = 1;
-  int32 id = 2;  // Unique ID number for this person.
-  string email = 3;
+  int32 packetHeader = 1;
+  string name = 2;
+  int32 id = 3;  // Unique ID number for this person.
+  string email = 4;
 
   enum PhoneType {
-    PHONE_TYPE_UNSPECIFIED = 0;
-    PHONE_TYPE_MOBILE = 1;
-    PHONE_TYPE_HOME = 2;
-    PHONE_TYPE_WORK = 3;
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
   }
 
   message PhoneNumber {
@@ -22,12 +40,12 @@ message Person {
     PhoneType type = 2;
   }
 
-  repeated PhoneNumber phones = 4;
-
-  google.protobuf.Timestamp last_updated = 5;
+  repeated PhoneNumber phones = 5;
+  google.protobuf.Timestamp last_updated = 6;
 }
 
 // Our address book file is just one of these.
 message AddressBook {
   repeated Person people = 1;
 }
+

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Google.Protobuf;
 using Google.Protobuf.Protocol;
+using Google.Protobuf.WellKnownTypes;
 using ServerCore;
 
 namespace Server
@@ -14,19 +17,13 @@ namespace Server
 	{
 		static Listener _listener = new Listener();
 
-
 		static void FlushRoom()
 		{
-		//	Room.Push(() => Room.Flush());
 			JobTimer.Instance.Push(FlushRoom, 250);
 		}
 
 		static void Main(string[] args)
 		{
-
-			Person person = new Person();
-
-
 			// DNS (Domain Name System)
 			string host = Dns.GetHostName();
 			IPHostEntry ipHost = Dns.GetHostEntry(host);
