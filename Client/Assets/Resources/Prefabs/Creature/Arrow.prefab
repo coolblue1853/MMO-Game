@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2674439358451447002}
   - component: {fileID: 2674439358451447001}
   - component: {fileID: 2674439358451447000}
-  - component: {fileID: 6800047067998327192}
+  - component: {fileID: 9030592060561297001}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -103,7 +103,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6800047067998327192
+--- !u!114 &9030592060561297001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,6 +112,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2674439358451446999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58ebe8f9fabf51a40a6353fcbded1757, type: 3}
+  m_Script: {fileID: 11500000, guid: bc34b1960d1fd1a45bcdab1e75277b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 5
+  _state: 0
+  _dir: 2

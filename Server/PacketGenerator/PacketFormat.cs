@@ -4,10 +4,10 @@ using System.Text;
 
 namespace PacketGenerator
 {
-	class PacketFormat
-	{
-		// {0} 패킷 등록
-		public static string managerFormat =
+    class PacketFormat
+    {
+        // {0} 패킷 등록
+        public static string managerFormat =
 @"using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using ServerCore;
@@ -29,6 +29,8 @@ class PacketManager
 	Dictionary<ushort, Action<PacketSession, ArraySegment<byte>, ushort>> _onRecv = new Dictionary<ushort, Action<PacketSession, ArraySegment<byte>, ushort>>();
 	Dictionary<ushort, Action<PacketSession, IMessage>> _handler = new Dictionary<ushort, Action<PacketSession, IMessage>>();
 		
+	public Action<PacketSession, IMessage, ushort> CustomHandler {{ get; set; }}
+
 	public void Register()
 	{{{0}
 	}}
@@ -51,9 +53,17 @@ class PacketManager
 	{{
 		T pkt = new T();
 		pkt.MergeFrom(buffer.Array, buffer.Offset + 4, buffer.Count - 4);
-		Action<PacketSession, IMessage> action = null;
-		if (_handler.TryGetValue(id, out action))
-			action.Invoke(session, pkt);
+
+		if (CustomHandler != null)
+		{{
+			CustomHandler.Invoke(session, pkt, id);
+		}}
+		else
+		{{
+			Action<PacketSession, IMessage> action = null;
+			if (_handler.TryGetValue(id, out action))
+				action.Invoke(session, pkt);
+		}}
 	}}
 
 	public Action<PacketSession, IMessage> GetPacketHandler(ushort id)
@@ -65,12 +75,12 @@ class PacketManager
 	}}
 }}";
 
-		// {0} MsgId
-		// {1} 패킷 이름
-		public static string managerRegisterFormat =
+        // {0} MsgId
+        // {1} 패킷 이름
+        public static string managerRegisterFormat =
 @"		
 		_onRecv.Add((ushort)MsgId.{0}, MakePacket<{1}>);
 		_handler.Add((ushort)MsgId.{0}, PacketHandler.{1}Handler);";
 
-	}
+    }
 }

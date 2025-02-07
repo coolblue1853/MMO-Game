@@ -1,51 +1,85 @@
-﻿using System;
+﻿using Google.Protobuf.Protocol;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectManager
 {
-	//Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
-	List<GameObject> _objects = new List<GameObject>();
+    public MyPlayerController MyPlayer { get; set; }
+    Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
 
-	public void Add(GameObject go)
-	{
-		_objects.Add(go);
-	}
+    public void Add(PlayerInfo info, bool myPlayer = false)
+    {
+        if (myPlayer)
+        {
+            GameObject go = Managers.Resource.Instantiate("Creature/MyPlayer");
+            go.name = info.Name;
+            _objects.Add(info.PlayerId, go);
 
-	public void Remove(GameObject go)
-	{
-		_objects.Remove(go);
-	}
+            MyPlayer = go.GetComponent<MyPlayerController>();
+            MyPlayer.Id = info.PlayerId;
+            MyPlayer.CellPos = new Vector3Int(info.PosX, info.PosY, 0);
+        }
+        else
+        {
+            GameObject go = Managers.Resource.Instantiate("Creature/Player");
+            go.name = info.Name;
+            _objects.Add(info.PlayerId, go);
 
-	public GameObject Find(Vector3Int cellPos)
-	{
-		foreach (GameObject obj in _objects)
-		{
-			CreatureController cc = obj.GetComponent<CreatureController>();
-			if (cc == null)
-				continue;
+            PlayerController pc = go.GetComponent<PlayerController>();
+            pc.Id = info.PlayerId;
+            pc.CellPos = new Vector3Int(info.PosX, info.PosY, 0);
+        }
+    }
 
-			if (cc.CellPos == cellPos)
-				return obj;
-		}
+    public void Add(int id, GameObject go)
+    {
+        _objects.Add(id, go);
+    }
 
-		return null;
-	}
+    public void Remove(int id)
+    {
+        _objects.Remove(id);
+    }
 
-	public GameObject Find(Func<GameObject, bool> condition)
-	{
-		foreach (GameObject obj in _objects)
-		{
-			if (condition.Invoke(obj))
-				return obj;
-		}
+    public void RemoveMyPlayer()
+    {
+        if (MyPlayer == null)
+            return;
 
-		return null;
-	}
+        Remove(MyPlayer.Id);
+        MyPlayer = null;
+    }
 
-	public void Clear()
-	{
-		_objects.Clear();
-	}
+    public GameObject Find(Vector3Int cellPos)
+    {
+        foreach (GameObject obj in _objects.Values)
+        {
+            CreatureController cc = obj.GetComponent<CreatureController>();
+            if (cc == null)
+                continue;
+
+            if (cc.CellPos == cellPos)
+                return obj;
+        }
+
+        return null;
+    }
+
+    public GameObject Find(Func<GameObject, bool> condition)
+    {
+        foreach (GameObject obj in _objects.Values)
+        {
+            if (condition.Invoke(obj))
+                return obj;
+        }
+
+        return null;
+    }
+
+    public void Clear()
+    {
+        _objects.Clear();
+    }
 }
