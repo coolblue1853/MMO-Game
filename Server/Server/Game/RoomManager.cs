@@ -4,7 +4,6 @@ using System.Text;
 
 namespace Server.Game
 {
-	//모든 룸을 관리
 	public class RoomManager
 	{
 		public static RoomManager Instance { get; } = new RoomManager();

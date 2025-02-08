@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Protocol;
+﻿using Google.Protobuf;
+using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,13 +18,12 @@ namespace Server.Game
 			if (newPlayer == null)
 				return;
 
-			//멀티스레드 구동
 			lock (_lock)
 			{
 				_players.Add(newPlayer);
 				newPlayer.Room = this;
 
-				// 본인한테 정보 전송, 내정보와 현재 접속해 있는 인원들 정보
+				// 본인한테 정보 전송
 				{
 					S_EnterGame enterPacket = new S_EnterGame();
 					enterPacket.Player = newPlayer.Info;
@@ -32,7 +32,7 @@ namespace Server.Game
 					S_Spawn spawnPacket = new S_Spawn();
 					foreach (Player p in _players)
 					{
-						if (newPlayer != p)//나 자신일때는 스킵
+						if (newPlayer != p)
 							spawnPacket.Players.Add(p.Info);
 					}
 					newPlayer.Session.Send(spawnPacket);
@@ -77,6 +77,17 @@ namespace Server.Game
 						if (player != p)
 							p.Session.Send(despawnPacket);
 					}
+				}
+			}
+		}
+
+		public void Broadcast(IMessage packet)
+		{
+			lock (_lock)
+			{
+				foreach (Player p in _players)
+				{
+					p.Session.Send(packet);
 				}
 			}
 		}
