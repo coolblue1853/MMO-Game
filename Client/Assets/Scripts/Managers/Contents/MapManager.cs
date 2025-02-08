@@ -59,8 +59,8 @@ public class MapManager
 		string mapName = "Map_" + mapId.ToString("000");
 		GameObject go = Managers.Resource.Instantiate($"Map/{mapName}");
 		go.name = "Map";
-
-		GameObject collision = Util.FindChild(go, "Tilemap_Collision", true);
+        Debug.Log(go);
+        GameObject collision = Util.FindChild(go, "Tilemap_Collision", true);
 		if (collision != null)
 			collision.SetActive(false);
 
@@ -69,7 +69,7 @@ public class MapManager
 		// Collision 관련 파일
 		TextAsset txt = Managers.Resource.Load<TextAsset>($"Map/{mapName}");
 		StringReader reader = new StringReader(txt.text);
-
+	
 		MinX = int.Parse(reader.ReadLine());
 		MaxX = int.Parse(reader.ReadLine());
 		MinY = int.Parse(reader.ReadLine());
