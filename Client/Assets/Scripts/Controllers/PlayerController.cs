@@ -102,7 +102,7 @@ public class PlayerController : CreatureController
 		{
 			_coSkill = StartCoroutine("CoStartPunch");
 		}
-		if (skillId == 2)
+		else if (skillId == 2)
 		{
 			_coSkill = StartCoroutine("CoStartShootArrow");
 		}
@@ -128,12 +128,12 @@ public class PlayerController : CreatureController
 	{
 		// 대기 시간
 		_rangedSkill = true;
-        State = CreatureState.Skill;
-        yield return new WaitForSeconds(0.3f);
+		State = CreatureState.Skill;
+		yield return new WaitForSeconds(0.3f);
 		State = CreatureState.Idle;
 		_coSkill = null;
-        CheckUpdatedFlag();
-    }
+		CheckUpdatedFlag();
+	}
 
 	public override void OnDamaged()
 	{

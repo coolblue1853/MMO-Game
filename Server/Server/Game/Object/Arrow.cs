@@ -1,5 +1,4 @@
 ﻿using Google.Protobuf.Protocol;
-using Server.Game.Object;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -40,8 +39,7 @@ namespace Server.Game
 				GameObject target = Room.Map.Find(destPos);
 				if (target != null)
 				{
-					target.OnDamaged(this, Data.damage);
-					
+					target.OnDamaged(this, Data.damage + Owner.Stat.Attack);
 				}
 
 				// 소멸

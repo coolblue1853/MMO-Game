@@ -1,5 +1,4 @@
 ﻿using Google.Protobuf.Protocol;
-using Server.Game.Object;
 using ServerCore;
 using System;
 using System.Collections.Generic;
@@ -59,7 +58,7 @@ namespace Server.Game
 		public int SizeY { get { return MaxY - MinY + 1; } }
 
 		bool[,] _collision;
-        GameObject[,] _objects;
+		GameObject[,] _objects;
 
 		public bool CanGo(Vector2Int cellPos, bool checkObjects = true)
 		{
