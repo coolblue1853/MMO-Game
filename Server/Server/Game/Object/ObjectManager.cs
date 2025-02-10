@@ -1,4 +1,6 @@
 ﻿using Google.Protobuf.Protocol;
+using Server.Game.Object;
+using Server.Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
