@@ -1,15 +1,16 @@
 ﻿using Google.Protobuf.Protocol;
+using Server.Game.Object;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Server.Game.Object
+namespace Server.Game
 {
-    public class Monster : GameObject
+	public class Monster : GameObject
     {
-        public Monster()
-        {
-            ObjectType = GameObjectType.Monster;
-        }
-    }
+		public Monster()
+		{
+			ObjectType = GameObjectType.Monster;
+		}
+	}
 }

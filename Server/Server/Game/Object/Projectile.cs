@@ -1,20 +1,23 @@
 ﻿using Google.Protobuf.Protocol;
+using Server.Game.Object;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Server.Game.Object
+namespace Server.Game
 {
-    public class Projectile : GameObject
+	public class Projectile : GameObject
     {
-        public Projectile()
-        {
-            ObjectType = GameObjectType.Projectile;
-        }
+		public Data.Skill Data { get; set; }
 
-        public virtual void Update()
-        {
+		public Projectile()
+		{
+			ObjectType = GameObjectType.Projectile;
+		}
 
-        }
-    }
+		public virtual void Update()
+		{
+
+		}
+	}
 }
