@@ -13,7 +13,6 @@ using Server.Data;
 using Server.DB;
 using Server.Game;
 using ServerCore;
-using static Server.DB.DataModel;
 
 namespace Server
 {
@@ -38,14 +37,7 @@ namespace Server
 			ConfigManager.LoadConfig();
 			DataManager.LoadData();
 
-			//DB TEST
-			using (AppDbContext db= new AppDbContext())
-			{
-				db.Accounts.Add(new AccountDb() { AccountName = "TestAccount" });
-				db.SaveChanges();
-			}
-
-				GameRoom room = RoomManager.Instance.Add(1);
+			GameRoom room = RoomManager.Instance.Add(1);
 			TickRoom(room, 50);
 
 			// DNS (Domain Name System)
