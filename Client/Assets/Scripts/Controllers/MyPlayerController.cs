@@ -8,14 +8,19 @@ public class MyPlayerController : PlayerController
 {
     bool _moveKeyPressed = false;
 
+    public int WeaponDamage { get; private set; }
+    public int ArmorDefence { get; private set; }
+
     protected override void Init()
     {
         base.Init();
+        RefreshAdditionalStat();
     }
 
     protected override void UpdateController()
     {
         GetUIKeyInput();
+
         switch (State)
         {
             case CreatureState.Idle:
@@ -62,9 +67,6 @@ public class MyPlayerController : PlayerController
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
     }
 
-
-
-    // 키보드 입력
     void GetUIKeyInput()
     {
         if (Input.GetKeyDown(KeyCode.I))
@@ -82,9 +84,24 @@ public class MyPlayerController : PlayerController
                 invenUI.RefreshUI();
             }
         }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+            UI_Stat statUI = gameSceneUI.StatUI;
+
+            if (statUI.gameObject.activeSelf)
+            {
+                statUI.gameObject.SetActive(false);
+            }
+            else
+            {
+                statUI.gameObject.SetActive(true);
+                statUI.RefreshUI();
+            }
+        }
     }
 
-
+    // 키보드 입력
     void GetDirInput()
     {
         _moveKeyPressed = true;
@@ -157,6 +174,28 @@ public class MyPlayerController : PlayerController
             movePacket.PosInfo = PosInfo;
             Managers.Network.Send(movePacket);
             _updated = false;
+        }
+    }
+
+    public void RefreshAdditionalStat()
+    {
+        WeaponDamage = 0;
+        ArmorDefence = 0;
+
+        foreach (Item item in Managers.Inven.Items.Values)
+        {
+            if (item.Equipped == false)
+                continue;
+
+            switch (item.ItemType)
+            {
+                case ItemType.Weapon:
+                    WeaponDamage += ((Weapon)item).Damage;
+                    break;
+                case ItemType.Armor:
+                    ArmorDefence += ((Armor)item).Defence;
+                    break;
+            }
         }
     }
 }
