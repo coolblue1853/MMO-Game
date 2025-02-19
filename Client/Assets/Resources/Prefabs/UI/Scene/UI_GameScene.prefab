@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3730894536419835419}
   - component: {fileID: 3730894536419835418}
   - component: {fileID: 3730894536419835421}
-  - component: {fileID: 6037387776681561764}
+  - component: {fileID: 7027517181543136516}
   m_Layer: 0
   m_Name: UI_GameScene
   m_TagString: Untagged
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6037387776681561764
+--- !u!114 &7027517181543136516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3730894536419835423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a571f447a31a9cc458dac690d2a25934, type: 3}
+  m_Script: {fileID: 11500000, guid: cf178df1fa3c9184396a6e93087080cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3121858724617018167

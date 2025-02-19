@@ -8,37 +8,37 @@ using Google.Protobuf;
 
 public class NetworkManager
 {
-    ServerSession _session = new ServerSession();
+	public int AccountId { get; set; }
+	public int Token { get; set; }
 
-    public void Send(IMessage packet)
-    {
-        _session.Send(packet);
-    }
+	ServerSession _session = new ServerSession();
 
-    public void ConnectToGame()
-    {
-        // DNS (Domain Name System)
-        string host = Dns.GetHostName();
-        IPHostEntry ipHost = Dns.GetHostEntry(host);
-        IPAddress ipAddr = ipHost.AddressList[0];
-        IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
+	public void Send(IMessage packet)
+	{
+		_session.Send(packet);
+	}
 
-        Connector connector = new Connector();
+	public void ConnectToGame(ServerInfo info)
+	{
+		IPAddress ipAddr = IPAddress.Parse(info.IpAddress);
+		IPEndPoint endPoint = new IPEndPoint(ipAddr, info.Port);
 
-        connector.Connect(endPoint,
-            () => { return _session; },
-            1);
-    }
+		Connector connector = new Connector();
 
-    public void Update()
-    {
-        List<PacketMessage> list = PacketQueue.Instance.PopAll();
-        foreach (PacketMessage packet in list)
-        {
-            Action<PacketSession, IMessage> handler = PacketManager.Instance.GetPacketHandler(packet.Id);
-            if (handler != null)
-                handler.Invoke(_session, packet.Message);
-        }
-    }
+		connector.Connect(endPoint,
+			() => { return _session; },
+			1);
+	}
+
+	public void Update()
+	{
+		List<PacketMessage> list = PacketQueue.Instance.PopAll();
+		foreach (PacketMessage packet in list)
+		{
+			Action<PacketSession, IMessage> handler = PacketManager.Instance.GetPacketHandler(packet.Id);
+			if (handler != null)
+				handler.Invoke(_session, packet.Message);
+		}	
+	}
 
 }

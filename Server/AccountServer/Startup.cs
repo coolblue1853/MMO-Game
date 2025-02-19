@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SharedDB;
 
 namespace AccountServer
 {
@@ -35,6 +36,9 @@ namespace AccountServer
 
 			services.AddDbContext<AppDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+			services.AddDbContext<SharedDbContext>(options =>
+				options.UseSqlServer(Configuration.GetConnectionString("SharedConnection")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
